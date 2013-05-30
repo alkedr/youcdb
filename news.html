@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#title{
+				color: #F2F76F;
+				font-family: arial;
+				font-size: 1100%;
+			}
+			#newsTitle{
+				color: #F2F76F;
+				font-family: arial;
+				font-size: 200%;
+				font-weight: bold;
+			}
+			#newsText{
+				color: #F2F76F;
+				font-family: arial;
+				font-size: 200%;
+			}
+		</style>
+	</head>
+	<body bgcolor="040642">
+		<table width="100%">
+			<tr>
+				<td id="title" align="center"><a href="/"><img src="/static/logo.jpg" width=270></img></a>  NEWS</td>
+			</tr>
+		</table>
+		<table width="100%" border=1px>
+			{% for pieceOfNews in news %}
+				<tr><td colspan=3>
+					<span id="newsTitle">{{ pieceOfNews.title }}</span><br>
+					<span id="newsText">{{ pieceOfNews.text }}</span>
+				</td></tr>
+    		{% endfor %}
+		</table>
+	</body> 
+</html>

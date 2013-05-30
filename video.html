@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+	<style>
+		#contentTable{
+			bgcolor: 000000;
+			opacity: 0.8;
+		}
+		#propertyName{
+			font-family: arial;
+			font-size: 140%;
+		}
+		#propertyValue{
+			font-family: arial;
+			font-size: 140%;
+		}
+		#title{
+			color: #F2F76F;
+			font-family: arial;
+			font-size: 1100%;
+		}
+		#videoTitle{
+			font-family: arial;
+			font-size: 200%;
+		}
+	</style>
+
+<body bgcolor="040642">
+
+		<table width="100%">
+			<tr>
+				<td id="title" align="center"><a href="/"><img src="/static/logo.jpg" width=270></img></a>  VIDEO</td>
+			</tr>
+		</table>
+
+	<table id="contentTable" width=1024 align="center" bgcolor=FFFFFF border=1px>
+		<tr>
+			<td id="videoTitle" align="center" colspan=3>{{ video.media.title.text.decode("utf-8") }}</td>
+		</tr>
+		<tr>
+			<td rowspan=4 width=1% height=1%>
+				<img src="{{ video.media.thumbnail[0].url }}"></img>
+			</td>
+			<td id="propertyName">views count:</td>
+			<td id="propertyValue">{{ video.statistics.view_count.decode("utf-8") }}</td>
+		</tr>
+		<tr>
+			<td id="propertyName">youtube rating:</td>
+			<td id="propertyValue">{{ video.rating.average.decode("utf-8") }}</td>
+		</tr>
+		<tr>
+			<td id="propertyName">category:</td>
+			<td id="propertyValue">
+				{% for category in video.media.category %}
+					{{ category.text.decode("utf-8") }} 
+    			{% endfor %}
+			</td>
+		</tr>
+		<tr>
+			<td id="propertyName">host:</td>
+			<td id="propertyValue"></td>
+		</tr>
+		<tr>
+			<td id="propertyValue" colspan=3></td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

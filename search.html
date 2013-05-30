@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#propertyName{
+				color: #F2F76F;
+				font-family: arial;
+				font-size: 140%;
+			}
+			#propertyValue{
+				color: #F2F76F;
+				font-family: arial;
+				font-size: 140%;
+			}
+			#title{
+				color: #F2F76F;
+				font-family: arial;
+				font-size: 1100%;
+			}
+			#linkToVideo{
+				cursor: pointer;
+			}
+			input{
+				color: #940808;
+				font-family: arial;
+				font-size: 300%;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body bgcolor="040642">
+		<form>
+		<table width="100%">
+			<tr>
+				<td id="title" align="center"><a href="/"><img src="/static/logo.jpg" width=270></img></a>  Search</td>
+			</tr>
+			<tr><td colspan=5 align=center><input name="q" type="text" value="{{ q }}"></input></td></tr>
+			<tr><td colspan=5 align=center><h1></h1></td></tr>
+		</table>
+		</form>
+		<table width="100%" border=1px>
+			{% for video in videos %}
+			<tr onclick='location.href="/video?id={{ videoIds[video.id] }}"' id="linkToVideo"><td>
+					<table>
+						<tr>
+							<td rowspan=3>
+								<img src="{{ video.media.thumbnail[1].url }}"></img>
+							</td>
+							<td id="propertyName">title:</td>
+							<td id="propertyValue">{{ video.media.title.text.decode("utf-8") }}</td>
+						</tr>
+						<tr>
+							<td id="propertyName">views count:</td>
+							<td id="propertyValue">{{ video.statistics.view_count.decode("utf-8") }}</td>
+						</tr>
+						<tr>
+							<td id="propertyName">category:</td>
+							<td id="propertyValue">
+								{% for category in video.media.category %}
+									{{ category.text.decode("utf-8") }} 
+    							{% endfor %}
+							</td>
+						</tr>
+					</table>
+			</td></tr>
+
+    		{% endfor %}
+		</table>
+	</body> 
+</html>
+
